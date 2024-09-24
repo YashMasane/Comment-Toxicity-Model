@@ -14,7 +14,7 @@ The model takes user comments as input and predicts whether the comment belongs 
 
 The comment toxicity detection model was developed using **bidirectional LSTM** layers and an **embedding layer** to capture word-level contextual embeddings. Preprocessing steps included text cleaning using regular expressions and the NLTK library.
 
-The model outputs a set of probabilities for each of the six classes, and a threshold of 0.5 is applied to determine whether the comment falls into any given category.
+The model outputs a set of probabilities for each of the six classes, and a threshold of 0.4 is applied to determine whether the comment falls into any given category.
 
 ### Achievements
 - **99% validation accuracy** achieved during model training.
@@ -40,7 +40,7 @@ You can use this model to predict the toxicity of comments in real-time. Below i
 
 ### Prediction Example
 
-To predict the toxicity of a comment, you can load the model and pass your text as input. The output will be a set of probabilities for each class. If any of the class probabilities exceed 0.5, that class will be considered a predicted category for the comment.
+To predict the toxicity of a comment, you can load the model and pass your text as input. The output will be a set of probabilities for each class. If any of the class probabilities exceed 0.4, that class will be considered a predicted category for the comment.
 
 ### Streamlit Frontend
 
@@ -61,7 +61,7 @@ The model is integrated with a **Streamlit** app that provides a simple and inte
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/your-repo/comment-toxicity-detection.git
+    git clone https://github.com/YashMasane/Comment-Toxicity-Model.git
     cd comment-toxicity-detection
     ```
 
@@ -90,10 +90,7 @@ The model was trained on a dataset of user comments labeled with the six target 
 - **Optimize the model** for deployment in low-latency environments.
 - Add more advanced NLP techniques like **transformers** for better performance.
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Contact
 
-For questions or suggestions, feel free to contact [Yash Raju Masane](mailto:your-email@example.com).
+For questions or suggestions, feel free to contact [Yash Raju Masane](mailto:masaneyash6@gmail.com).
