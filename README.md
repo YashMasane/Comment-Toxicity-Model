@@ -84,14 +84,10 @@ Preprocessing the text data was crucial for improving model performance. I appli
 
 ### Evaluation Metrics 📈
 
-<div style="display: flex; justify-content: space-around;">
-    <div style="margin-right: 10px;">
-        <img src="img/Accuracy.png" alt="Accuracy Curve" width="300"/>
-    </div>
-    <div>
-        <img src="img/Loss.png" alt="Loss Curve" width="300"/>
-    </div>
-</div>
+<p align="center">
+  <img src="/img/Accuracy.png" alt="Real Image" width="400" />
+  <img src="/img/Loss.png" alt="AI generated Image" width="400" />
+</p>
 
 
 The model was evaluated using several key metrics:
