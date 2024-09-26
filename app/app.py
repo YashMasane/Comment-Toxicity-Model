@@ -4,15 +4,17 @@ import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
 import tensorflow as tf
-from helper import preprocessed_text
+from helper import processed_text
+import numpy
 
 
 # Load your pre-trained model 
-def load_model():
-    model = tf.keras.models.load_model('model/toxic.h5')  
+def load_pretrained_model():
+    model = tf.keras.models.load_model('toxic.keras')  
     return model
 
-model = load_model()
+# Load the pre-trained model
+model = load_pretrained_model()
 
 # Define the classes
 classes = ['toxic', 'severe_toxic', 'obscene', 'threat', 'insult', 'identity_hate']
@@ -20,10 +22,10 @@ classes = ['toxic', 'severe_toxic', 'obscene', 'threat', 'insult', 'identity_hat
 # Function to predict classes and probabilities
 def predict_toxicity(text):
     
-    processed_text = preprocessed_text(text)  # Modify this as per your preprocessing
+    vectorized_text = processed_text(text)  # Modify this as per your preprocessing
     
     # Predict probabilities
-    probabilities = model.predict(np.expand_dims(processed_text, 0))[0]
+    probabilities = model.predict(np.expand_dims(vectorized_text, 0))[0]
     
     # Determine predicted classes (those with probability > 0.5)
     predicted_classes = [classes[i] for i, prob in enumerate(probabilities) if prob >= 0.5]
@@ -35,14 +37,16 @@ st.title('Comment Toxicity Detection')
 
 # Input field for the comment
 user_input = st.text_area("Enter a comment:", "")
-
+print(processed_text(user_input))
+st.write(processed_text(user_input))
 if st.button('Predict'):
     if user_input:
+        
         # Make predictions
         probabilities, predicted_classes = predict_toxicity(user_input)
 
         # Create two columns
-        col1, col2 = st.columns([3, 3])  # Adjust column width as needed
+        col1, col2 = st.columns([2, 3])  # Adjust column width as needed
 
         with col2:  # Right Column
             # Display the original text
@@ -76,3 +80,7 @@ if st.button('Predict'):
             st.pyplot(fig)
     else:
         st.write("Please enter a comment to predict.")
+
+# input_text = 'how idiot you are'
+# print(input_text)
+# print(processed_text(input_text).numpy())

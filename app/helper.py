@@ -1,20 +1,23 @@
 import re
 import nltk
 from nltk.corpus import stopwords
-import numpy as np
+import pickle
 import tensorflow as tf
 from tensorflow.keras.layers import TextVectorization
-import pickle
 
 nltk.download('stopwords')
 
 stop_words = set(stopwords.words('english'))
 
-from_disk = pickle.load(open("model/tv_layer.pkl", "rb"))
-new_v = TextVectorization.from_config(from_disk['config'])
-# You have to call `adapt` with some dummy data (BUG in Keras)
-new_v.adapt(tf.data.Dataset.from_tensor_slices(["xyz"]))
-new_v.set_weights(from_disk['weights'])
+def load_vectorizer():
+    from_disk = pickle.load(open("models/tv_layer.pkl", "rb"))
+    new_v = TextVectorization.from_config(from_disk['config'])
+    # You have to call `adapt` with some dummy data (BUG in Keras)
+    new_v.adapt(tf.data.Dataset.from_tensor_slices(["xyz"]))
+    new_v.set_vocabulary(from_disk['weights'])
+
+    return new_v
+
 
 # defining a function for preprocessing text
 def preprocess(q):
@@ -176,12 +179,14 @@ def preprocess(q):
     pattern = re.compile('\W')
     q = re.sub(pattern, ' ', q).strip()
 
-    return q
+    return q.strip()
 
-
-def preprocessed_text(text):
-
-    pre_text = preprocess(text)
-    vectorized_text = new_v(pre_text)
+def processed_text(text):
+    text = preprocess(text)
+    new_v = load_vectorizer()
+    vectorized_text = new_v(text)
 
     return vectorized_text
+
+
+
