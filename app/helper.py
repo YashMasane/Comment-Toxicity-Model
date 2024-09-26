@@ -18,7 +18,6 @@ def load_vectorizer():
 
     return new_v
 
-
 # defining a function for preprocessing text
 def preprocess(q):
     
@@ -179,7 +178,7 @@ def preprocess(q):
     pattern = re.compile('\W')
     q = re.sub(pattern, ' ', q).strip()
 
-    return q.strip()
+    return q
 
 def processed_text(text):
     text = preprocess(text)
@@ -187,6 +186,3 @@ def processed_text(text):
     vectorized_text = new_v(text)
 
     return vectorized_text
-
-
-

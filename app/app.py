@@ -5,12 +5,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 import tensorflow as tf
 from helper import processed_text
-import numpy
 
 
 # Load your pre-trained model 
 def load_pretrained_model():
-    model = tf.keras.models.load_model('toxic.keras')  
+    model = tf.keras.models.load_model('models/toxic.keras')  
     return model
 
 # Load the pre-trained model
@@ -37,11 +36,9 @@ st.title('Comment Toxicity Detection')
 
 # Input field for the comment
 user_input = st.text_area("Enter a comment:", "")
-print(processed_text(user_input))
-st.write(processed_text(user_input))
+
 if st.button('Predict'):
     if user_input:
-        
         # Make predictions
         probabilities, predicted_classes = predict_toxicity(user_input)
 
@@ -81,6 +78,4 @@ if st.button('Predict'):
     else:
         st.write("Please enter a comment to predict.")
 
-# input_text = 'how idiot you are'
-# print(input_text)
-# print(processed_text(input_text).numpy())
+# print('Text vectorization for input is', processed_text('Yor are a bad person'))
