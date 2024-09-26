@@ -86,10 +86,10 @@ Preprocessing the text data was crucial for improving model performance. I appli
 
 <div style="display: flex; justify-content: space-around;">
     <div style="margin-right: 10px;">
-        <img src="img/Accuracy.png" alt="Accuracy Curve" width="400"/>
+        <img src="img/Accuracy.png" alt="Accuracy Curve" width="300"/>
     </div>
     <div>
-        <img src="img/Loss.png" alt="Loss Curve" width="400"/>
+        <img src="img/Loss.png" alt="Loss Curve" width="300"/>
     </div>
 </div>
 
@@ -154,6 +154,8 @@ This will start a local server and open the Streamlit application in your web br
 
 ## Project Structure 📁
 
+```bash
+
 comment-toxicity-detection/
 │
 ├── app/                     # Streamlit application
@@ -169,6 +171,7 @@ comment-toxicity-detection/
 ├── requirements.txt         # List of required packages
 └── README.md                # Project documentation
 
+```
 
 ## Contributing 🤝
 
